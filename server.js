@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve all files inside public folder
+// Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
 // Home page
@@ -17,9 +17,10 @@ app.get("/interview.html", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "interview.html"));
 });
 
-// API
+// Health check
 app.get("/api", (req, res) => {
     res.json({
+        status: "success",
         message: "AI Interview App is running successfully!"
     });
 });

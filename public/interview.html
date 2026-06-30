@@ -1,122 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Interview</title>
+
 <link rel="stylesheet" href="style.css">
-<style>
-body{
-background:linear-gradient(180deg,#5ad3d0,#e9ffff);
-}
-
-.main{
-display:flex;
-justify-content:center;
-gap:30px;
-margin-top:30px;
-}
-
-.video-box{
-width:500px;
-height:420px;
-background:white;
-border-radius:15px;
-padding:20px;
-box-shadow:0 10px 20px rgba(0,0,0,.2);
-text-align:center;
-}
-
-video{
-width:100%;
-height:300px;
-background:black;
-border-radius:10px;
-object-fit:cover;
-}
-
-.ai-box{
-position:absolute;
-right:20px;
-bottom:20px;
-width:120px;
-height:150px;
-border-radius:10px;
-overflow:hidden;
-border:3px solid white;
-}
-
-.ai-box img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.info{
-width:380px;
-height:420px;
-background:white;
-padding:20px;
-border-radius:15px;
-box-shadow:0 10px 20px rgba(0,0,0,.2);
-}
-
-.record{
-margin-top:15px;
-padding:12px 20px;
-background:green;
-color:white;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-}
-</style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">AI Interview</div>
-<div class="title">AI Mock Interview</div>
+<header class="header">
+    <h2>AI Interview</h2>
+    <h2>AI Mock Interview</h2>
 </header>
 
 <div class="main">
 
-<div class="video-box">
+    <div class="video-box">
 
-<div style="position:relative">
+        <div class="video-container">
 
-<video id="camera" autoplay muted></video>
+            <video id="camera" autoplay muted playsinline></video>
 
-<div class="ai-box">
+            <div class="ai-box">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" alt="AI Interviewer">
+            </div>
 
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400">
+        </div>
 
-</div>
+        <button id="startBtn" class="record">
+            START RECORDING
+        </button>
 
-</div>
+    </div>
 
-<button id="startBtn" class="record">START RECORDING</button>
+    <div class="info">
 
-</div>
+        <h2>Candidate Info</h2>
 
-<div class="info">
+        <p><b>Question:</b></p>
 
-<h2>Candidate Info</h2>
+        <p id="question">
+            Waiting for AI...
+        </p>
 
-<br>
+        <br>
 
-<p><b>Question:</b></p>
+        <h3>Transcript</h3>
 
-<p>Introduce Yourself.</p>
+        <p id="transcript">
+            Waiting...
+        </p>
 
-<br>
-
-<h3>Transcript</h3>
-
-<p id="transcript">Waiting...</p>
-
-</div>
+    </div>
 
 </div>
 
