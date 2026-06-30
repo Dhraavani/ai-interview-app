@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AI Interview</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{
+background:linear-gradient(180deg,#5ad3d0,#e9ffff);
+}
+
+.main{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:30px;
+}
+
+.video-box{
+width:500px;
+height:420px;
+background:white;
+border-radius:15px;
+padding:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+text-align:center;
+}
+
+video{
+width:100%;
+height:300px;
+background:black;
+border-radius:10px;
+object-fit:cover;
+}
+
+.ai-box{
+position:absolute;
+right:20px;
+bottom:20px;
+width:120px;
+height:150px;
+border-radius:10px;
+overflow:hidden;
+border:3px solid white;
+}
+
+.ai-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.info{
+width:380px;
+height:420px;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+.record{
+margin-top:15px;
+padding:12px 20px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">AI Interview</div>
+<div class="title">AI Mock Interview</div>
+</header>
+
+<div class="main">
+
+<div class="video-box">
+
+<div style="position:relative">
+
+<video id="camera" autoplay muted></video>
+
+<div class="ai-box">
+
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400">
+
+</div>
+
+</div>
+
+<button class="record">START RECORDING</button>
+
+</div>
+
+<div class="info">
+
+<h2>Candidate Info</h2>
+
+<br>
+
+<p><b>Question:</b></p>
+
+<p>Introduce Yourself.</p>
+
+<br>
+
+<h3>Transcript</h3>
+
+<p id="transcript">Waiting...</p>
+
+</div>
+
+</div>
+
+<script>
+navigator.mediaDevices.getUserMedia({video:true})
+.then(stream=>{
+document.getElementById("camera").srcObject=stream;
+});
+</script>
+
+</body>
+</html>

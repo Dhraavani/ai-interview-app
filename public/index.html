@@ -3,47 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Interview</title>
+<title>AI Mock Interview</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<div class="app">
+<header>
 
-    <div class="left-panel">
-        <h2>🤖 AI Interviewer</h2>
-
-        <div class="avatar">
-            🤖
-        </div>
-
-        <div id="question">
-            Click Start Interview
-        </div>
-
-        <button id="startBtn">
-            Start Interview
-        </button>
-    </div>
-
-    <div class="status">
-    <span id="status">🟢 Ready</span>
-    <span id="timer">00:00</span>
+<div class="logo">
+🤖 AI Interview
 </div>
-<video id="video" autoplay playsinline muted width="400" height="300"></video>
 
-<div class="answerBox">
-    <h3>Your Answer</h3>
-    <p id="answerText">Waiting...</p>
+<div class="title">
+AI Mock Interview
+</div>
 
-    <hr>
+</header>
 
-    <h3>AI Score</h3>
+<div class="container">
 
-    <p id="score">
-        Waiting for evaluation...
-    </p>
+<div class="card">
+
+<h1>Mock Interview Invitation</h1>
+
+<input type="email" placeholder="Enter your email">
+
+<label>Select Question Mode</label>
+
+<select>
+<option>Predefined</option>
+<option>Custom</option>
+</select>
+
+<button onclick="startInterview()">
+JOIN MOCK INTERVIEW
+</button>
+
+</div>
+
 </div>
 
 <script src="script.js"></script>
