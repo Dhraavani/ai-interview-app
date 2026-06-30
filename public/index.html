@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Interview</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="left-panel">
+        <h2>🤖 AI Interviewer</h2>
+
+        <div class="avatar">
+            🤖
+        </div>
+
+        <div id="question">
+            Click Start Interview
+        </div>
+
+        <button id="startBtn">
+            Start Interview
+        </button>
+    </div>
+
+    <div class="status">
+    <span id="status">🟢 Ready</span>
+    <span id="timer">00:00</span>
+</div>
+<video id="video" autoplay playsinline muted width="400" height="300"></video>
+
+<div class="answerBox">
+    <h3>Your Answer</h3>
+    <p id="answerText">Waiting...</p>
+
+    <hr>
+
+    <h3>AI Score</h3>
+
+    <p id="score">
+        Waiting for evaluation...
+    </p>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
