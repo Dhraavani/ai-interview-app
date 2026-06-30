@@ -96,7 +96,7 @@ cursor:pointer;
 
 </div>
 
-<button class="record">START RECORDING</button>
+<button id="startBtn" class="record">START RECORDING</button>
 
 </div>
 
@@ -120,36 +120,7 @@ cursor:pointer;
 
 </div>
 
-<script>
-const button = document.querySelector(".record");
-const transcript = document.getElementById("transcript");
-
-button.onclick = function () {
-
-    if (!('webkitSpeechRecognition' in window)) {
-        alert("Speech Recognition is not supported in this browser.");
-        return;
-    }
-
-    const recognition = new webkitSpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-
-    recognition.onresult = function(event) {
-        let text = "";
-
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            text += event.results[i][0].transcript;
-        }
-
-        transcript.innerHTML = text;
-    };
-
-    recognition.start();
-    button.innerHTML = "RECORDING...";
-};
- 
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
