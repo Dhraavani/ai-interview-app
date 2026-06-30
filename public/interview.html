@@ -121,10 +121,34 @@ cursor:pointer;
 </div>
 
 <script>
-navigator.mediaDevices.getUserMedia({video:true})
-.then(stream=>{
-document.getElementById("camera").srcObject=stream;
-});
+const button = document.querySelector(".record");
+const transcript = document.getElementById("transcript");
+
+button.onclick = function () {
+
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("Speech Recognition is not supported in this browser.");
+        return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onresult = function(event) {
+        let text = "";
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            text += event.results[i][0].transcript;
+        }
+
+        transcript.innerHTML = text;
+    };
+
+    recognition.start();
+    button.innerHTML = "RECORDING...";
+};
+ 
 </script>
 
 </body>
