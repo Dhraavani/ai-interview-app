@@ -4,7 +4,7 @@ const question = document.getElementById("question");
 const startBtn = document.getElementById("startBtn");
 const timerDisplay = document.getElementById("timer");
 
-// Questions
+// Interview Questions
 const questions = [
     "Introduce yourself.",
     "Tell me about your final year project.",
@@ -46,19 +46,19 @@ function stopTimer() {
 
 // ================= CAMERA =================
 
-navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-})
-.then(stream => {
-    if (camera) {
+if (camera) {
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
+    })
+    .then(stream => {
         camera.srcObject = stream;
-    }
-})
-.catch(err => {
-    alert("Please allow camera and microphone.");
-    console.log(err);
-});
+    })
+    .catch(err => {
+        alert("Please allow camera and microphone.");
+        console.log(err);
+    });
+}
 
 // ================= AI VOICE =================
 
@@ -76,7 +76,7 @@ function speak(text) {
     window.speechSynthesis.speak(speech);
 }
 
-// ================= START INTERVIEW =================
+// ================= HOME PAGE =================
 
 function startInterview() {
     window.location.href = "interview.html";
@@ -87,7 +87,7 @@ function startInterview() {
 const SpeechRecognition =
 window.SpeechRecognition || window.webkitSpeechRecognition;
 
-if (SpeechRecognition) {
+if (SpeechRecognition && startBtn) {
 
     const recognition = new SpeechRecognition();
 
@@ -95,48 +95,102 @@ if (SpeechRecognition) {
     recognition.continuous = false;
     recognition.interimResults = true;
 
-    // Start Recording Button
-    if (startBtn) {
+    startBtn.onclick = () => {
 
-        startBtn.onclick = () => {
+        transcript.innerHTML = "Listening...";
 
-            if (currentQuestion === 0) {
+        if (currentQuestion === 0) {
 
-                question.innerHTML = questions[currentQuestion];
+            question.innerHTML = questions[currentQuestion];
 
-                speak("Welcome to AI Mock Interview.");
+            speak("Welcome to AI Mock Interview.");
 
-                setTimeout(() => {
+            setTimeout(() => {
 
-                    speak(questions[currentQuestion]);
-
-                    recognition.start();
-
-                    startTimer();
-
-                    transcript.innerHTML = "Listening...";
-
-                }, 2500);
-
-            } else {
+                speak(questions[currentQuestion]);
 
                 recognition.start();
 
                 startTimer();
 
-                transcript.innerHTML = "Listening...";
+            }, 2500);
 
-            }
+        } else {
 
-        };
+            recognition.start();
 
-    }
+            startTimer();
 
-    // User Answer
+        }
+
+    };
+    // ================= USER ANSWER =================
+
     recognition.onresult = (event) => {
 
         let text = "";
 
         for (let i = event.resultIndex; i < event.results.length; i++) {
 
-            text += event.results
+            text += event.results[i][0].transcript;
+
+        }
+
+        transcript.innerHTML = text;
+
+    };
+
+    // ================= RECORDING ENDED =================
+
+    recognition.onend = () => {
+
+        stopTimer();
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+
+            question.innerHTML = questions[currentQuestion];
+
+            transcript.innerHTML = "Click START RECORDING for the next answer.";
+
+            setTimeout(() => {
+
+                speak(questions[currentQuestion]);
+
+            }, 1000);
+
+        } else {
+
+            question.innerHTML = "Interview Completed";
+
+            transcript.innerHTML =
+                "Thank you for attending the AI Mock Interview.";
+
+            speak("Interview completed. Thank you and all the best.");
+
+            startBtn.disabled = true;
+            startBtn.innerHTML = "INTERVIEW COMPLETED";
+
+        }
+
+    };
+
+    // ================= ERRORS =================
+
+    recognition.onerror = (event) => {
+
+        stopTimer();
+
+        console.log(event.error);
+
+        transcript.innerHTML =
+            "Microphone error: " + event.error;
+
+    };
+
+} else {
+
+    console.log("Speech Recognition not supported or Start button not found.");
+
+}
